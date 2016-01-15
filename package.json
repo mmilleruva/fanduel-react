@@ -1,0 +1,21 @@
+{
+  "name": "fanduel-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "webpack ./index.jsx bundle.js --module-bind 'css=style!css' --module-bind 'jsx=jsx'",
+    "watch": "webpack --progress --colors --watch ./index.jsx bundle.js --module-bind 'css=style!css' --module-bind 'jsx=jsx'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.12.11"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
+  }
+}
