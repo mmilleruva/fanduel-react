@@ -1,3 +1,7 @@
 .position {
   color: lightgray;
 }
+
+.team-summary {
+  position: fixed;
+}

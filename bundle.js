@@ -47,11 +47,12 @@
 	__webpack_require__(1);
 	var ReactDOM = __webpack_require__(5);
 	var React = __webpack_require__(151);
-	var data = __webpack_require__(163);
 
-	var Index = __webpack_require__(164);
 
-	ReactDOM.render(React.createElement(Index, {data: data}), document.getElementById('example'));
+	var Index = __webpack_require__(163);
+
+
+	ReactDOM.render(React.createElement(Index, null), document.getElementById('example'));
 
 
 
@@ -90,7 +91,7 @@
 
 
 	// module
-	exports.push([module.id, ".position {\n  color: lightgray;\n}\n", ""]);
+	exports.push([module.id, ".position {\n  color: lightgray;\n}\n\n.team-summary {\n  position: fixed;\n}\n", ""]);
 
 	// exports
 
@@ -20002,6 +20003,122 @@
 
 /***/ },
 /* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// main.js
+	var React = __webpack_require__(151);
+	var PlayerList = __webpack_require__(164);
+	var TeamSummary = __webpack_require__(165);
+	var data = __webpack_require__(166);
+
+	module.exports = React.createClass({
+	    displayName: 'HelloReact',
+
+	    getInitialState: function() {
+	      return {
+	        data: data,
+	        players: []
+	      }
+	    },
+	    render: function(){
+	        return React.createElement("div", null, 
+	          React.createElement("h1", null, 
+	          "Player List"
+	          ), 
+	          React.createElement("div", {className: "row"}, 
+	            React.createElement("div", {className: "col s8"}, 
+	              React.createElement(PlayerList, {data: this.state.data})
+	            ), 
+	            React.createElement("div", {className: "col s4"}, 
+	              React.createElement(TeamSummary, {players: this.state.players})
+	            )
+	          )
+	        )
+	    }
+	})
+
+
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// main.js
+	var React = __webpack_require__(151)
+
+	module.exports = React.createClass({
+	    displayName: 'HelloReact',
+	    render: function(){
+	      var playerNodes = this.props.data.map(function(player) {
+
+	        var addRemove = (React.createElement("a", {href: "#", className: "green-text accent-4"}, "Add Player"));
+	        if (player.salary > 9000) {
+	          addRemove = (React.createElement("a", {href: "#", className: "red-text accent-4"}, "Remove Player"))
+	        };
+
+
+	        return (
+	          React.createElement("div", {className: "card"}, 
+	            React.createElement("div", {className: "card-content"}, 
+	              React.createElement("h2", {className: "card-title"}, 
+	                player.name, 
+	                " ", 
+	                React.createElement("span", {className: "position"}, 
+	                  player.position
+	                )
+
+	              ), 
+	              React.createElement("div", {className: "details"}, 
+	                React.createElement("h4", null, player.team), 
+	                React.createElement("h4", null, player.salaryString), 
+	                React.createElement("h4", null, " Projected: ", player.regression.expected.toFixed(1))
+
+	              )
+	            ), 
+	            React.createElement("div", {className: "card-action"}, 
+	                addRemove
+	              )
+	          )
+	        );
+	    });
+	        return React.createElement("div", null, 
+	          playerNodes
+	        )
+	    }
+	})
+
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// main.js
+	var React = __webpack_require__(151);
+
+
+	module.exports = React.createClass({
+	    displayName: 'TeamSummary',
+	    render: function(){
+
+	      var playerNodes = this.props.players.map(function(player) {
+	        return React.createElement("div", null, " ", player.name, " ")
+	      });
+	      return React.createElement("div", {className: "card team-summary"}, 
+	       React.createElement("div", {className: "card-content"}, 
+	          React.createElement("div", {className: "card-title"}, 
+	            "Team Summary"
+	          ), 
+
+	          React.createElement("div", {className: "card-content"}, 
+	            playerNodes
+	          )
+	        )
+	      )
+	    }
+	})
+
+
+/***/ },
+/* 166 */
 /***/ function(module, exports) {
 
 	module.exports = [{ name: 'DeMarco Murray',
@@ -57440,66 +57557,6 @@
 	     teamPoints: 23,
 	     obs: 7,
 	     expected: 4.096019300361883 } }]
-
-
-/***/ },
-/* 164 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// main.js
-	var React = __webpack_require__(151);
-	var PlayerList = __webpack_require__(165);
-	module.exports = React.createClass({
-	    displayName: 'HelloReact',
-	    render: function(){
-	        return React.createElement("div", null, 
-	          React.createElement("h1", null, 
-	          "Player List"
-	          ), 
-	          React.createElement(PlayerList, {data: this.props.data})
-	        )
-	    }
-	})
-
-
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// main.js
-	var React = __webpack_require__(151)
-
-	module.exports = React.createClass({
-	    displayName: 'HelloReact',
-	    render: function(){
-	      var playerNodes = this.props.data.map(function(player) {
-	      return (
-	        React.createElement("div", {className: "card"}, 
-	          React.createElement("div", {className: "card-content"}, 
-	            React.createElement("h2", {className: "card-title"}, 
-	              player.name, 
-	              " ", 
-	              React.createElement("span", {className: "position"}, 
-	                player.position
-	              )
-
-	            ), 
-	            React.createElement("div", {className: "details"}, 
-	              React.createElement("h3", null, player.salaryString), 
-	              React.createElement("h3", null, player.team)
-	            )
-	          ), 
-	          React.createElement("div", {className: "card-action"}, 
-	              React.createElement("a", {href: "#"}, "View Player Details")
-	            )
-	        )
-	      );
-	    });
-	        return React.createElement("div", {className: "col s12 m6"}, 
-	          playerNodes
-	        )
-	    }
-	})
 
 
 /***/ }
