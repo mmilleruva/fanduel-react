@@ -4,15 +4,31 @@ var PlayerList = require('./playerList.jsx');
 var TeamSummary = require('./teamSummary.jsx');
 var data = require('../data/finalData.js');
 
+var playerStore = require('../stores/playerStore.js');
+
+function getPlayerState(){
+  return {
+        data: playerStore.getAll(),
+        players: playerStore.getAllOnTeam() || []
+  }
+}
+
 module.exports = React.createClass({
     displayName: 'HelloReact',
 
     getInitialState: function() {
-      return {
-        data: data,
-        players: []
-      }
+      return getPlayerState();
     },
+
+    componentDidMount: function() {
+      playerStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+      playerStore.removeChangeListener(this._onChange);
+    },
+
+
     render: function(){
         return <div>
           <h1>
@@ -27,5 +43,9 @@ module.exports = React.createClass({
             </div>
           </div>
         </div>
-    }
+    },
+
+    _onChange: function() {
+    this.setState(getPlayerState());
+  }
 })
