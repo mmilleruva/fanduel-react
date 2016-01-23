@@ -7,7 +7,7 @@ module.exports = React.createClass({
     render: function(){
 
       var playerNodes = this.props.players.map(function(player) {
-        return <div> {player.name} </div>
+        return <div key={player.nflId}> {player.name} </div>
       });
       return <div className="card team-summary">
        <div className="card-content">

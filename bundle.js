@@ -20125,11 +20125,13 @@
 	        );
 	    },
 
-	  _addPlayer: function() {
+	  _addPlayer: function(e) {
+	    e.preventDefault()
 	    PlayerActions.addPlayer(this.props.player);
 	  },
 
-	  _removePlayer: function() {
+	  _removePlayer: function(e) {
+	    e.preventDefault()
 	    PlayerActions.removePlayer(this.props.player);
 	  }
 	})
@@ -20563,7 +20565,7 @@
 	    render: function(){
 
 	      var playerNodes = this.props.players.map(function(player) {
-	        return React.createElement("div", null, " ", player.name, " ")
+	        return React.createElement("div", {key: player.nflId}, " ", player.name, " ")
 	      });
 	      return React.createElement("div", {className: "card team-summary"}, 
 	       React.createElement("div", {className: "card-content"}, 
@@ -58034,6 +58036,10 @@
 	var playerConstants = __webpack_require__(171);
 
 	var CHANGE_EVENT = 'change';
+
+	players = _.filter(players, function(curPlayer){
+	  return curPlayer.nflId;
+	});
 
 	function findPlayer(player){
 	  return _.find(players, function(curPlayer){

@@ -7,6 +7,10 @@ var playerConstants = require('../constants/playerConstants.js');
 
 var CHANGE_EVENT = 'change';
 
+players = _.filter(players, function(curPlayer){
+  return curPlayer.nflId;
+});
+
 function findPlayer(player){
   return _.find(players, function(curPlayer){
     return player.name == curPlayer.name

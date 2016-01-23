@@ -38,11 +38,13 @@ module.exports = React.createClass({
         );
     },
 
-  _addPlayer: function() {
+  _addPlayer: function(e) {
+    e.preventDefault()
     PlayerActions.addPlayer(this.props.player);
   },
 
-  _removePlayer: function() {
+  _removePlayer: function(e) {
+    e.preventDefault()
     PlayerActions.removePlayer(this.props.player);
   }
 })
