@@ -20045,7 +20045,7 @@
 	              React.createElement(PlayerList, {data: this.state.data})
 	            ), 
 	            React.createElement("div", {className: "col s4"}, 
-	              React.createElement(TeamSummary, {players: this.state.players})
+	              React.createElement(TeamSummary, {salary: 60000, players: this.state.players})
 	            )
 	          )
 	        )
@@ -20558,25 +20558,31 @@
 
 	// main.js
 	var React = __webpack_require__(151);
-
+	var playerHelpers = __webpack_require__(181)
 
 	module.exports = React.createClass({
 	    displayName: 'TeamSummary',
 	    render: function(){
 
 	      var playerNodes = this.props.players.map(function(player) {
-	        return React.createElement("div", {key: player.nflId}, " ", player.name, " ")
+	        return React.createElement("div", {key: player.nflId}, " ", player.name, "   ", player.position)
 	      });
-	      return React.createElement("div", {className: "card team-summary"}, 
-	       React.createElement("div", {className: "card-content"}, 
-	          React.createElement("div", {className: "card-title"}, 
-	            "Team Summary"
-	          ), 
 
-	          React.createElement("div", {className: "card-content"}, 
-	            playerNodes
+	      var remainingSalary = this.props.salary - playerHelpers.totalSalary(this.props.players);
+	      return React.createElement("div", {className: "card team-summary"}, 
+	         React.createElement("div", {className: "card-content"}, 
+	            React.createElement("div", {className: "card-title"}, 
+	              "Team Summary"
+	            ), 
+
+	            React.createElement("div", {className: "card-content"}, 
+	              playerNodes
+	            )
+
+	          ), 
+	          React.createElement("div", {className: "card-action"}, 
+	            "Salary Remaining: $", remainingSalary
 	          )
-	        )
 	      )
 	    }
 	})
@@ -72884,6 +72890,27 @@
 
 		return to;
 	};
+
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var _ = __webpack_require__(176);
+
+	module.exports = {
+	  totalSalary: function(players){
+	    debugger;
+	    var total = _.sumBy(players, function(player){
+	      debugger;
+	      return player.salary;
+	    });
+	    if (total) {
+	      return total;
+	    };
+	    return 0;
+	  }
+	}
 
 
 /***/ }

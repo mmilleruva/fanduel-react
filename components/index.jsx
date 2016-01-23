@@ -39,7 +39,7 @@ module.exports = React.createClass({
               <PlayerList data={this.state.data}/>
             </div>
             <div className="col s4">
-              <TeamSummary players={this.state.players} />
+              <TeamSummary salary={60000} players={this.state.players} />
             </div>
           </div>
         </div>
