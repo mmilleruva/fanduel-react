@@ -17,6 +17,7 @@ module.exports = React.createClass({
     displayName: 'HelloReact',
 
     getInitialState: function() {
+
       return getPlayerState();
     },
 

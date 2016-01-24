@@ -1,6 +1,8 @@
 // main.js
 var React = require('react');
 var PlayerActions = require('../actions/playerActions.js');
+var Link = require('react-router').Link
+var PlayerStatusBadge = require('./playerStatusBadge.jsx');
 
 module.exports = React.createClass({
     displayName: 'PlayerListItem',
@@ -19,6 +21,8 @@ module.exports = React.createClass({
               <h2 className="card-title">
                 {player.name}
                 &nbsp;
+                <PlayerStatusBadge status={player.status} />
+                &nbsp;
                 <span className="position">
                   {player.position}
                 </span>
@@ -33,7 +37,8 @@ module.exports = React.createClass({
             </div>
             <div className="card-action">
                 {addRemove}
-              </div>
+                <Link to={"/players/" + player.nflId }>Details</Link>
+            </div>
           </div>
         );
     },

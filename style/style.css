@@ -5,3 +5,8 @@
 .team-summary {
   position: fixed;
 }
+
+.badge.player-badge{
+  /*position: static;*/
+  border-radius: 5px;
+}

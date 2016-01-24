@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "bundle": "webpack ./index.jsx bundle.js --module-bind 'css=style!css' --module-bind 'jsx=jsx'",
-    "watch": "webpack --progress --colors --watch ./index.jsx bundle.js --module-bind 'css=style!css' --module-bind 'jsx=jsx'"
+    "watch": "webpack --progress --colors --watch ./index.jsx bundle.js --module-bind 'css=style!css' --module-bind 'jsx=jsx'",
+    "server": "http-server"
   },
   "author": "",
   "license": "ISC",
@@ -15,9 +16,12 @@
   },
   "dependencies": {
     "babel-preset-react": "^6.3.13",
+    "history": "^1.17.0",
+    "http-server": "^0.8.5",
     "keymirror": "^0.1.1",
     "lodash": "^4.0.0",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-router": "^1.0.3"
   }
 }

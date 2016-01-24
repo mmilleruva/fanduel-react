@@ -22,6 +22,10 @@ function findPlayersOnTeam() {
   return _.filter(players, {'added': true});
 }
 
+function findPlayerById(nflId) {
+  return _.find(players, {'nflId': nflId});
+}
+
 
 function addPlayer(player){
   var selectedPlayer = findPlayer(player);
@@ -40,6 +44,10 @@ var PlayerStore = assign({}, EventEmitter.prototype, {
 
   getAllOnTeam: function() {
     return findPlayersOnTeam();
+  },
+
+  getPlayerByNflId: function(nflId){
+    return findPlayerById(nflId);
   },
 
   emitChange: function() {
