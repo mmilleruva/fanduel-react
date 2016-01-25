@@ -57,7 +57,7 @@
 
 
 	ReactDOM.render(
-	 React.createElement(Router, null, 
+	 React.createElement(Router, {onUpdate: function(){ window.scrollTo(0, 0)}}, 
 	    React.createElement(Route, {path: "/", component: Index}
 	    ), 
 	    React.createElement(Route, {path: "/players/:id", component: PlayerDetail})
@@ -101,7 +101,7 @@
 
 
 	// module
-	exports.push([module.id, ".position {\n  color: lightgray;\n}\n\n.team-summary {\n  position: fixed;\n}\n\n.badge.player-badge{\n  /*position: static;*/\n  border-radius: 5px;\n}\n", ""]);
+	exports.push([module.id, ".position {\n  color: lightgray;\n}\n\n.team-summary {\n  position: fixed;\n}\n\n.chip{\n  vertical-align: super;\n}\n", ""]);
 
 	// exports
 
@@ -24578,11 +24578,11 @@
 	              React.createElement("h2", {className: "card-title"}, 
 	                player.name, 
 	                " ", 
-	                React.createElement(PlayerStatusBadge, {status: player.status}), 
-	                " ", 
 	                React.createElement("span", {className: "position"}, 
 	                  player.position
-	                )
+	                ), 
+	                " ", 
+	                React.createElement(PlayerStatusBadge, {status: player.status})
 
 	              ), 
 	              React.createElement("div", {className: "details"}, 
@@ -25042,19 +25042,19 @@
 	      var result = (React.createElement("span", null));
 	      switch (this.props.status){
 	        case 'P':
-	          result = (React.createElement("span", {className: "badge player-badge white-text light-green"}, "PROBABLE"));
+	          result = (React.createElement("span", {className: "chip white-text light-green"}, "PROBABLE"));
 	          break;
 
 	        case 'Q':
-	          result = (React.createElement("span", {className: "badge player-badge white-text yellow accent-3"}, "QUESTIONABLE"));
+	          result = (React.createElement("span", {className: "chip white-text yellow accent-3"}, "QUESTIONABLE"));
 	          break;
 
 	        case 'O':
-	          result = (React.createElement("span", {className: "badge player-badge white-text red accent-4"}, "OUT"));
+	          result = (React.createElement("span", {className: "chip white-text red accent-4"}, "OUT"));
 	          break;
 
 	        case 'IR':
-	          result = (React.createElement("span", {className: "badge player-badge white-text red accent-4  "}, "INJURED RESERVE"));
+	          result = (React.createElement("span", {className: "chip white-text red accent-4  "}, "INJURED RESERVE"));
 	          break;
 
 	        default:
@@ -77472,13 +77472,12 @@
 	          React.createElement("div", {className: "col s12"}, 
 	            React.createElement("h1", null, 
 	              player.name, 
-	              " " + " " +
-
 	              " ", 
 	              React.createElement("span", {className: "position"}, 
-	                player.position, 
-	                React.createElement(PlayerStatusBadge, {status: player.status})
-	              )
+	                player.position
+	              ), 
+	              " ", 
+	              React.createElement(PlayerStatusBadge, {status: player.status})
 
 	            )
 	          ), 
@@ -77506,10 +77505,12 @@
 	module.exports = React.createClass({
 	    displayName: 'GameStatsList',
 	    render: function(){
+	      var gameIndex = 1;
 	      var gameNodes = this.props.games.map(function(game) {
 
-	        return (
+	        var result = (
 	          React.createElement("tr", null, 
+	                React.createElement("td", null, gameIndex), 
 	                React.createElement("td", null, game.gameStarted), 
 	                React.createElement("td", null, game.rushYD), 
 	                React.createElement("td", null, game.rushTD), 
@@ -77524,11 +77525,14 @@
 	                React.createElement("td", null, game.fantasyPoints.toFixed(1))
 	            )
 	        );
+	        gameIndex++;
+	        return result;
 	    });
 	        return(
-	        React.createElement("table", {className: "striped responsive-table"}, 
+	        React.createElement("table", {className: "striped centered responsive-table"}, 
 	          React.createElement("thead", null, 
 	            React.createElement("tr", null, 
+	                React.createElement("th", null, "Game"), 
 	                React.createElement("th", null, "Started"), 
 	                React.createElement("th", null, "Rush YD"), 
 	                React.createElement("th", null, "Rush TD"), 

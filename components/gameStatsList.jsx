@@ -5,10 +5,12 @@ var PlayerListItem = require('./playerListItem.jsx');
 module.exports = React.createClass({
     displayName: 'GameStatsList',
     render: function(){
+      var gameIndex = 1;
       var gameNodes = this.props.games.map(function(game) {
 
-        return (
+        var result = (
           <tr>
+                <td>{gameIndex}</td>
                 <td>{game.gameStarted}</td>
                 <td>{game.rushYD}</td>
                 <td>{game.rushTD}</td>
@@ -23,11 +25,14 @@ module.exports = React.createClass({
                 <td>{game.fantasyPoints.toFixed(1)}</td>
             </tr>
         );
+        gameIndex++;
+        return result;
     });
         return(
-        <table className="striped responsive-table">
+        <table className="striped centered responsive-table">
           <thead>
             <tr>
+                <th>Game</th>
                 <th>Started</th>
                 <th>Rush YD</th>
                 <th>Rush TD</th>

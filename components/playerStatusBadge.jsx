@@ -9,19 +9,19 @@ module.exports = React.createClass({
       var result = (<span></span>);
       switch (this.props.status){
         case 'P':
-          result = (<span className="badge player-badge white-text light-green">PROBABLE</span>);
+          result = (<span className="chip white-text light-green">PROBABLE</span>);
           break;
 
         case 'Q':
-          result = (<span className="badge player-badge white-text yellow accent-3">QUESTIONABLE</span>);
+          result = (<span className="chip white-text yellow accent-3">QUESTIONABLE</span>);
           break;
 
         case 'O':
-          result = (<span className="badge player-badge white-text red accent-4">OUT</span>);
+          result = (<span className="chip white-text red accent-4">OUT</span>);
           break;
 
         case 'IR':
-          result = (<span className="badge player-badge white-text red accent-4  ">INJURED RESERVE</span>);
+          result = (<span className="chip white-text red accent-4  ">INJURED RESERVE</span>);
           break;
 
         default:

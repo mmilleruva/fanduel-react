@@ -21,11 +21,11 @@ module.exports = React.createClass({
               <h2 className="card-title">
                 {player.name}
                 &nbsp;
-                <PlayerStatusBadge status={player.status} />
-                &nbsp;
                 <span className="position">
                   {player.position}
                 </span>
+                &nbsp;
+                <PlayerStatusBadge status={player.status} />
 
               </h2>
               <div className="details">

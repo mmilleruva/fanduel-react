@@ -11,7 +11,7 @@ var PlayerDetail = require('./components/pagePlayerDetail.jsx');
 
 
 ReactDOM.render(
- <Router>
+ <Router onUpdate={function(){ window.scrollTo(0, 0)}}>
     <Route path="/" component={Index}>
     </Route>
     <Route path="/players/:id" component={PlayerDetail} />

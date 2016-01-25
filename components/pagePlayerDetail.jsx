@@ -34,12 +34,11 @@ module.exports = React.createClass({
             <h1>
               {player.name}
               &nbsp;
-
-              &nbsp;
               <span className="position">
                 {player.position}
-                <PlayerStatusBadge status={player.status} />
               </span>
+              &nbsp;
+              <PlayerStatusBadge status={player.status} />
 
             </h1>
           </div>
